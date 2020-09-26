@@ -37,8 +37,9 @@ defmodule OpenTelemetryDecorator do
           end
         rescue
           exception ->
-            OpenTelemetry.Span.set_attributes(Ex.handle_exception(exception))
-            reraise exception, exception.__stacktrace__
+            stacktrace = __STACKTRACE__
+            OpenTelemetry.Span.set_attributes(Ex.handle_exception(exception, stacktrace))
+            reraise exception, stacktrace
         end
       end
     end
