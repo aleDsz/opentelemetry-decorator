@@ -6,10 +6,16 @@ defmodule OpenTelemetryDecorator.Result do
   @doc """
   Handle the result from map
   """
-  @spec handle_result(map() | struct()) :: [{binary(), binary() | integer()}]
-  def handle_result(%{__meta__: _, __struct__: struct, id: id}) do
-    name = struct.__schema__(:source)
-    return_attribute("#{name}_id", id)
+  @spec handle_result(map() | struct() | any()) :: [{binary(), binary() | integer()}]
+  def handle_result(%{__meta__: _} = schema) do
+    name = schema.__struct__.__schema__(:source)
+
+    attributes =
+      schema
+      |> Map.delete(:__meta__)
+      |> handle_result()
+
+    attributes ++ [{"schema_name", name}]
   end
 
   def handle_result(%{__struct__: struct, id: id}) do
@@ -17,6 +23,7 @@ defmodule OpenTelemetryDecorator.Result do
       Module.split(struct)
       |> List.last()
       |> Macro.camelize()
+      |> String.downcase()
 
     return_attribute("#{name}_id", id)
   end
@@ -27,6 +34,10 @@ defmodule OpenTelemetryDecorator.Result do
 
   def handle_result(%{"id" => id}) do
     return_attribute("id", id)
+  end
+
+  def handle_result(value) do
+    return_attribute("value", value)
   end
 
   @doc """
