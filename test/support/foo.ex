@@ -37,6 +37,17 @@ defmodule Foo do
   end
 
   @decorate with_span()
+  def stacktrace() do
+    case Foo.value() do
+      {:ok, 123} ->
+        :ok
+
+      {:error, _} ->
+        :error
+    end
+  end
+
+  @decorate with_span()
   def error_string() do
     {:error, "this is an error"}
   end
