@@ -18,7 +18,8 @@ defmodule OpenTelemetryDecorator.MixProject do
 
   defp deps,
     do: [
-      {:opentelemetry_api, "~> 0.3.0"},
+      {:opentelemetry_api, "~> 0.4"},
+      {:opentelemetry, "~> 0.4"},
       {:decorator, "~> 1.2"}
     ]
 end
