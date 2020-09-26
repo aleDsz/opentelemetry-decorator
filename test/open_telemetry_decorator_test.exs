@@ -82,8 +82,35 @@ defmodule OpenTelemetryDecoratorTest do
 
       assert [
                {"exception", true},
-               {"exception.message", "bla bla test"}
-             ] == list
+               {"exception.message", "bla bla test"},
+               {"exception.stacktrace", message}
+             ] = list
+
+      assert message =~ "Elixir.Foo"
+    end
+
+    test "test with with_span/0 retuns the stacktrace attribute" do
+      list =
+        try do
+          Foo.stacktrace()
+        rescue
+          _ ->
+            assert_receive {:span,
+                            span(
+                              name: "Elixir.Foo.stacktrace/0",
+                              attributes: list
+                            )}
+
+            list
+        end
+
+      assert [
+               {"exception", true},
+               {"exception.message", "no case clause matching: {:ok, \"asdasda\"}"},
+               {"exception.stacktrace", message}
+             ] = list
+
+      assert message =~ "Elixir.Foo"
     end
 
     test "test with with_span/0 retuns the error string attribute" do
