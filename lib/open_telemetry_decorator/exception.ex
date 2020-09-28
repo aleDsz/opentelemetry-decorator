@@ -23,25 +23,9 @@ defmodule OpenTelemetryDecorator.Exception do
   @spec return_stacktrace(list(tuple())) :: list(tuple())
   defp return_stacktrace(stacktrace) when is_list(stacktrace) do
     stacktrace =
-      Enum.map(stacktrace, fn
-        {fun, arity, location} ->
-          arity = get_arity(arity)
-          "#{fun}/#{arity} at #{location[:file]} on line #{location[:line]}"
-
-        {module, function, arity, location} ->
-          arity = get_arity(arity)
-          "#{module}.#{function}/#{arity} at #{location[:file]} on line #{location[:line]}"
-      end)
-      |> Enum.join("\n")
+      Exception.format_stacktrace(stacktrace)
+      |> String.trim()
 
     [{"exception.stacktrace", stacktrace}]
-  end
-
-  @spec get_arity(non_neg_integer() | list()) :: non_neg_integer()
-  defp get_arity(arity) when is_integer(arity), do: arity
-
-  defp get_arity(arity) when is_list(arity) do
-    IO.inspect(arity)
-    0
   end
 end

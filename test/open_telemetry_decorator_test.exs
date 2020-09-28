@@ -86,7 +86,7 @@ defmodule OpenTelemetryDecoratorTest do
                {"exception.stacktrace", message}
              ] = list
 
-      assert message =~ "Elixir.Foo"
+      assert message =~ "(opentelemetry_decorator) test/support/foo.ex"
     end
 
     test "test with with_span/0 retuns the stacktrace attribute" do
@@ -110,7 +110,7 @@ defmodule OpenTelemetryDecoratorTest do
                {"exception.stacktrace", message}
              ] = list
 
-      assert message =~ "Elixir.Foo"
+      assert message =~ "(opentelemetry_decorator) test/support/foo.ex"
     end
 
     test "test with with_span/0 retuns the error string attribute" do
