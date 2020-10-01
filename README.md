@@ -1,11 +1,18 @@
-# OpenTelemetryDecorator
+# OpenTelemetry Decorator
 
 **TODO: Add description**
 
+## Configuration
+
+If you and a custom handler for function results, you can add to your `config/*.exs`:
+
+```elixir
+config :opentelemetry_decorator, handler: MyApp.Handler
+```
+
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `opentelemetry_decorator` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `opentelemetry_decorator` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +22,6 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/opentelemetry_decorator](https://hexdocs.pm/opentelemetry_decorator).
+## Documentation
 
+Documentation can be found at [https://hexdocs.pm/opentelemetry_decorator](https://hexdocs.pm/opentelemetry_decorator).
