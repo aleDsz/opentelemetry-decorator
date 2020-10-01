@@ -1,6 +1,19 @@
 # OpenTelemetry Decorator
 
-**TODO: Add description**
+This library provide an easily interface to trace your application with [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-erlang-api) for Elixir, using decorations above your functions.
+
+## Usage
+
+```elixir
+defmodule Foo do
+	use OpenTelemetryDecorator
+
+	@decorate with_span()
+	def bar do
+		{:ok, %{id: 123}}
+	end
+end
+```
 
 ## Configuration
 
