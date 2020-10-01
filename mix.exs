@@ -7,6 +7,14 @@ defmodule OpenTelemetryDecorator.MixProject do
       version: "0.1.0",
       elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
+      description: "Library to provide decorators for OpenTelemetry",
+      package: [
+        links: %{
+          github: "https://github.com/aleDsz/opentelemetry-decorator"
+        },
+        licenses: ["MIT"]
+      ],
+      docs: docs(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -20,6 +28,13 @@ defmodule OpenTelemetryDecorator.MixProject do
     do: [
       {:opentelemetry_api, "~> 0.4"},
       {:opentelemetry, "~> 0.4"},
-      {:decorator, "~> 1.2"}
+      {:decorator, "~> 1.2"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
+    ]
+
+  defp docs,
+    do: [
+      main: "OpenTelemetryDecorator",
+      extras: ["README.md"]
     ]
 end
