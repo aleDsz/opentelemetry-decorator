@@ -1,7 +1,6 @@
 defmodule OpenTelemetryDecorator.Result do
-  @moduledoc """
-  Handle the result from success function
-  """
+  @moduledoc false
+  # Handle the result from success function
 
   @doc """
   Handle the result from map

@@ -1,7 +1,6 @@
 defmodule OpenTelemetryDecorator.Error do
-  @moduledoc """
-  Handle the result from error function
-  """
+  @moduledoc false
+  # Handle the result from error function
 
   @doc """
   Handle the error from tuple

@@ -1,7 +1,6 @@
 defmodule OpenTelemetryDecorator.Exception do
-  @moduledoc """
-  Handle the result from exception function
-  """
+  @moduledoc false
+  # Handle the result from exception function
 
   @doc """
   Handle the exception from struct 
